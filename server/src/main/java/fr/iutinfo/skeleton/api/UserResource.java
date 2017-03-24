@@ -5,6 +5,8 @@ import static fr.iutinfo.skeleton.api.BDDFactory.tableExist;
 
 import java.sql.SQLException;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 import javax.ws.rs.Consumes;
@@ -20,6 +22,7 @@ import javax.ws.rs.core.MediaType;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
 
 import fr.iutinfo.skeleton.common.dto.UserDto;
 
@@ -44,9 +47,22 @@ public class UserResource {
         
         User user2 = dao.findByEmail(user.getEmail());
         
-       /* if(user.getName() == null){
+        //Vérification adresse mail
+        Pattern p = Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,4}$");
+		Matcher m = p.matcher(user.getEmail().toUpperCase());
+		if(!m.matches()){
+			return null;
+		}
+		
+        /*
+        if(user.getPrenom() == null){
+        	user.setPrenom("");
+        }
+        if(user.getName() == null){
         	user.setName("");
-        }*/
+        }
+        */
+        
         
         if(user2 == null){
         	 user.resetPasswordHash();
