@@ -1,6 +1,8 @@
 package fr.iutinfo.skeleton.api;
 
 import fr.iutinfo.skeleton.common.dto.UserDto;
+
+import org.skife.jdbi.v2.sqlobject.Bind;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -32,10 +34,17 @@ public class UserResource {
     public UserDto createUser(UserDto dto) {
         User user = new User();
         user.initFromDto(dto);
-        user.resetPasswordHash();
-        int id = dao.insert(user);
-        dto.setId(id);
-        return dto;
+        
+        User user2 = dao.findByEmail(user.getEmail());
+        
+        if(user2 == null){
+        	 user.resetPasswordHash();
+             int id = dao.insert(user);
+             dto.setId(id);
+             return dto;
+        }
+        
+        return null;
     }
 
     @GET
