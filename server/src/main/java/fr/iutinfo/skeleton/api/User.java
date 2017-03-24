@@ -155,17 +155,21 @@ public class User implements Principal {
     }
 
     public void initFromDto(UserDto dto) {
-        this.setEmail(dto.getEmail());
+       
         this.setId(dto.getId());
-        this.setName(dto.getName());
+        this.setName(dto.getName()); 
+        this.setPrenom(dto.getPrenom()); 
+        this.setEmail(dto.getEmail());
         this.setPassword(dto.getPassword());
     }
 
     public UserDto convertToDto() {
         UserDto dto = new UserDto();
-        dto.setEmail(this.getEmail());
+        
         dto.setId(this.getId());
         dto.setName(this.getName());
+        dto.setPrenom(this.getPrenom());
+        dto.setEmail(this.getEmail());
         dto.setPassword(this.getPassword());
         return dto;
     }

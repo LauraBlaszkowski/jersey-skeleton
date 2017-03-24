@@ -11,6 +11,7 @@ public class UserDto implements Principal {
     private int id = 0;
     private String email;
     private String password;
+    private String prenom;
 
     public String getEmail() {
         return email;
@@ -43,4 +44,12 @@ public class UserDto implements Principal {
     public void setPassword(String password) {
         this.password = password;
     }
+
+	public String getPrenom() {
+		return prenom;
+	}
+
+	public void setPrenom(String prenom) {
+		this.prenom = prenom;
+	}
 }
