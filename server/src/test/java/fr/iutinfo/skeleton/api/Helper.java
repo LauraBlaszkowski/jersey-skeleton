@@ -23,11 +23,6 @@ public class Helper {
         return createUser(user);
     }
 
-    static User createUserWithAlias(String name, String alias) {
-        User user = new User(0, name, alias);
-        return createUser(user);
-    }
-
     static User createUserWithEmail(String name, String email) {
         User user = new User(0, name);
         user.setEmail(email);
@@ -49,9 +44,8 @@ public class Helper {
     }
 
 
-    private static User createFullUSer(String name, String alias, String email, String paswword) {
+    private static User createFullUSer(String name, String email, String paswword) {
         User user = new User(0, name);
-        user.setAlias(alias);
         user.setEmail(email);
         user.setPassword(paswword);
         int id = dao.insert(user);
@@ -60,18 +54,18 @@ public class Helper {
     }
 
     static void createRms() {
-        createFullUSer("Richard Stallman", "RMS", "rms@fsf.org", "gnuPaswword");
+        createFullUSer("Richard Stallman", "rms@fsf.org", "gnuPaswword");
     }
 
     static User createRob() {
-        return createFullUSer("Robert Capillo", "rob", "rob@fsf.org", "paswword");
+        return createFullUSer("Robert Capillo", "rob@fsf.org", "paswword");
     }
 
     static User createLinus() {
-        return createFullUSer("Linus Torvalds", "linus", "linus@linux.org", "paswword");
+        return createFullUSer("Linus Torvalds", "linus@linux.org", "paswword");
     }
 
     static User createIan() {
-        return createFullUSer("Ian Murdock", "debian", "ian@debian.org", "mot de passe");
+        return createFullUSer("Ian Murdock", "ian@debian.org", "mot de passe");
     }
 }

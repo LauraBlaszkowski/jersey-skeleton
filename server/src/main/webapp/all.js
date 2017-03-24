@@ -40,20 +40,19 @@ function getByAnnotation() {
      }
  }
 
-function postUserBdd(name, alias, email, pwd) {
-    postUserGeneric(name, alias, email, pwd, "v1/user/");
+function postUserBdd(name, email, pwd) {
+    postUserGeneric(name, email, pwd, "v1/user/");
 }
 
-function postUserGeneric(name, alias, email, pwd, url) {
+function postUserGeneric(name, email, pwd, url) {
 	console.log("postUserGeneric " + url)
-	$.ajax({
+	$.ajax(
 		type : 'POST',
 		contentType : 'application/json',
 		url : url,
 		dataType : "json",
 		data : JSON.stringify({
 			"name" : name,
-			"alias" : alias,
 			"email" : email,
 			"password" : pwd,
 			"id" : 0
