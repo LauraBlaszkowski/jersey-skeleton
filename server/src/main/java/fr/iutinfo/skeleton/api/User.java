@@ -14,7 +14,8 @@ public class User implements Principal {
     final static Logger logger = LoggerFactory.getLogger(User.class);
     private static User anonymous = new User(-1, "Anonymous");
     private String name;
-    private int id = 0;
+    private String prenom;
+	private int id = 0;
     private String email;
     private String password;
     private String passwdHash;
@@ -57,6 +58,15 @@ public class User implements Principal {
     public void setName(String name) {
         this.name = name;
     }
+    
+    public String getPrenom() {
+		return prenom;
+	}
+
+
+	public void setPrenom(String prenom) {
+		this.prenom = prenom;
+	}
 
     public String getPassword() {
         return this.password;

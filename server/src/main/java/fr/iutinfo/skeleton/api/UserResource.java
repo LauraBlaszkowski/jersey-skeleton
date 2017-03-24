@@ -37,13 +37,19 @@ public class UserResource {
         
         User user2 = dao.findByEmail(user.getEmail());
         
+        if(user.getPrenom() == null){
+        	user.setPrenom("");
+        }
+        if(user.getName() == null){
+        	user.setName("");
+        }
+        
         if(user2 == null){
         	 user.resetPasswordHash();
              int id = dao.insert(user);
              dto.setId(id);
              return dto;
         }
-        
         return null;
     }
 
