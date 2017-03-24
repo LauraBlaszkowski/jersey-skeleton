@@ -35,7 +35,7 @@ public class ProfilResource {
         if (!tableExist("profils")) {
             logger.debug("Crate table profils");
             dao.createProfilTable();
-            dao.insert(new Profil(0, "Profil1", "utilisateur1", "Profil de base"));
+            dao.insert(new Profil(0, "Profil1", 0, "Profil de base"));
         }
     }
 
@@ -43,9 +43,9 @@ public class ProfilResource {
     public ProfilDto createProfil(ProfilDto dto) {
         Profil profil= new Profil();
         profil.initFromDto(dto);
-        System.out.println("test");
-        User user = daoUser.findByName(profil.getProprio());
-        if (user != null) {
+        User user = daoUser.findById(profil.getProprio());
+        Profil profil2= dao.findByName(profil.getName());
+        if (user != null && profil2 != null) {
         	 int id = dao.insert(profil);
              dto.setId(id);
              return dto;

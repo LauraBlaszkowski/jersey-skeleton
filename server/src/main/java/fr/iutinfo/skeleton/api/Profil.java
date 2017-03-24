@@ -7,15 +7,15 @@ import fr.iutinfo.skeleton.common.dto.ProfilDto;
 
 public class Profil implements Principal {
     final static Logger logger = LoggerFactory.getLogger(Profil.class);
-    private static Profil anonymous = new Profil(-1, "Basic", "anonymous", "");
+    private static Profil anonymous = new Profil(-1, "Basic", -1, "");
     private String name;
     private int id = 0;
-    private String proprio;
+    private int proprio;
     private String description;
     private String search;
 
 
-    public Profil(int id, String name, String proprio, String description) {
+    public Profil(int id, String name, int proprio, String description) {
     	this.id=id;
     	this.name=name;
     	this.proprio=proprio;
@@ -48,12 +48,12 @@ public class Profil implements Principal {
     }
     
 
-	public String getProprio() {
+	public int getProprio() {
 		return proprio;
 	}
 
 
-	public void setProprio(String proprio) {
+	public void setProprio(int proprio) {
 		this.proprio = proprio;
 	}
 

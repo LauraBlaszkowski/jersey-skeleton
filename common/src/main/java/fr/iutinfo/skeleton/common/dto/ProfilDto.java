@@ -9,7 +9,7 @@ public class ProfilDto implements Principal {
     final static Logger logger = LoggerFactory.getLogger(ProfilDto.class);
     private String name;
     private int id = 0;
-    private String proprio;
+    private int proprio;
     private String description;
 
 
@@ -30,11 +30,11 @@ public class ProfilDto implements Principal {
         this.name = name;
     }
     
-	public String getProprio() {
+	public int getProprio() {
 		return proprio;
 	}
 
-	public void setProprio(String proprio) {
+	public void setProprio(int proprio) {
 		this.proprio = proprio;
 	}
 
