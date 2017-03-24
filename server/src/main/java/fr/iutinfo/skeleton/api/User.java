@@ -10,6 +10,8 @@ import org.slf4j.LoggerFactory;
 import java.security.Principal;
 import java.security.SecureRandom;
 
+import javax.swing.JOptionPane;
+
 public class User implements Principal {
     final static Logger logger = LoggerFactory.getLogger(User.class);
     private static User anonymous = new User(-1, "Anonymous");
@@ -22,10 +24,16 @@ public class User implements Principal {
     private String salt;
     private String search;
 
-    public User(int id, String name) {
+    public User(int id, String name, String prenom) {
         this.id = id;
         this.name = name;
+        this.prenom=prenom;
     }
+    
+    public User(int id, String name) {
+    	this(id, name, null);
+    }
+
 
 
     public User() {
@@ -59,10 +67,9 @@ public class User implements Principal {
         this.name = name;
     }
     
-    public String getPrenom() {
+   public String getPrenom() {
 		return prenom;
 	}
-
 
 	public void setPrenom(String prenom) {
 		this.prenom = prenom;
@@ -164,8 +171,10 @@ public class User implements Principal {
     }
 
     public UserDto convertToDto() {
+    	if(prenom==null){
+    		prenom="";
+    	}
         UserDto dto = new UserDto();
-        
         dto.setId(this.getId());
         dto.setName(this.getName());
         dto.setPrenom(this.getPrenom());

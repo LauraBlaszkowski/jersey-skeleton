@@ -1,19 +1,28 @@
 package fr.iutinfo.skeleton.api;
 
-import fr.iutinfo.skeleton.common.dto.UserDto;
+import static fr.iutinfo.skeleton.api.BDDFactory.getDbi;
+import static fr.iutinfo.skeleton.api.BDDFactory.tableExist;
 
-import org.skife.jdbi.v2.sqlobject.Bind;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import javax.ws.rs.*;
-import javax.ws.rs.core.MediaType;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static fr.iutinfo.skeleton.api.BDDFactory.getDbi;
-import static fr.iutinfo.skeleton.api.BDDFactory.tableExist;
+import javax.swing.JOptionPane;
+import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
+import javax.ws.rs.GET;
+import javax.ws.rs.POST;
+import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
+import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
+import javax.ws.rs.WebApplicationException;
+import javax.ws.rs.core.MediaType;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import fr.iutinfo.skeleton.common.dto.UserDto;
 
 @Path("/user")
 @Produces(MediaType.APPLICATION_JSON)
@@ -56,10 +65,13 @@ public class UserResource {
     @GET
     @Path("/{name}")
     public UserDto getUser(@PathParam("name") String name) {
+    	
         User user = dao.findByName(name);
         if (user == null) {
+        	
             throw new WebApplicationException(404);
         }
+        
         return user.convertToDto();
     }
 
