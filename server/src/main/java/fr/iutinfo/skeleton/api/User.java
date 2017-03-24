@@ -1,22 +1,21 @@
 package fr.iutinfo.skeleton.api;
 
-import com.google.common.base.Charsets;
-import com.google.common.hash.Hasher;
-import com.google.common.hash.Hashing;
-import fr.iutinfo.skeleton.common.dto.UserDto;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import java.security.Principal;
 import java.security.SecureRandom;
 
-import javax.swing.JOptionPane;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import com.google.common.base.Charsets;
+import com.google.common.hash.Hasher;
+import com.google.common.hash.Hashing;
+
+import fr.iutinfo.skeleton.common.dto.UserDto;
 
 public class User implements Principal {
     final static Logger logger = LoggerFactory.getLogger(User.class);
     private static User anonymous = new User(-1, "Anonymous");
     private String name;
-    private String prenom;
 	private int id = 0;
     private String email;
     private String password;
@@ -24,18 +23,11 @@ public class User implements Principal {
     private String salt;
     private String search;
 
-    public User(int id, String name, String prenom) {
+    public User(int id, String name) {
         this.id = id;
         this.name = name;
-        this.prenom=prenom;
     }
-    
-    public User(int id, String name) {
-    	this(id, name, null);
-    }
-
-
-
+   
     public User() {
     }
 
@@ -66,14 +58,6 @@ public class User implements Principal {
     public void setName(String name) {
         this.name = name;
     }
-    
-   public String getPrenom() {
-		return prenom;
-	}
-
-	public void setPrenom(String prenom) {
-		this.prenom = prenom;
-	}
 
     public String getPassword() {
         return this.password;
@@ -164,20 +148,15 @@ public class User implements Principal {
     public void initFromDto(UserDto dto) {
        
         this.setId(dto.getId());
-        this.setName(dto.getName()); 
-        this.setPrenom(dto.getPrenom()); 
+        this.setName(dto.getName());
         this.setEmail(dto.getEmail());
         this.setPassword(dto.getPassword());
     }
 
     public UserDto convertToDto() {
-    	if(prenom==null){
-    		prenom="";
-    	}
         UserDto dto = new UserDto();
         dto.setId(this.getId());
         dto.setName(this.getName());
-        dto.setPrenom(this.getPrenom());
         dto.setEmail(this.getEmail());
         dto.setPassword(this.getPassword());
         return dto;

@@ -7,7 +7,6 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import javax.swing.JOptionPane;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -46,9 +45,6 @@ public class UserResource {
         
         User user2 = dao.findByEmail(user.getEmail());
         
-        if(user.getPrenom() == null){
-        	user.setPrenom("");
-        }
         if(user.getName() == null){
         	user.setName("");
         }
