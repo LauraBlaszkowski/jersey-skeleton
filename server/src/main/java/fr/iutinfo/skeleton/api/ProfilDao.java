@@ -7,7 +7,7 @@ import org.skife.jdbi.v2.tweak.BeanMapperFactory;
 import java.util.List;
 
 public interface ProfilDao {
-    @SqlUpdate("create table profils (id integer primary key autoincrement, name varchar(100), proprio varchar(100), description varchar(150))")
+    @SqlUpdate("create table profils (id integer primary key autoincrement, name varchar(100), proprio Integer, description varchar(150))")
     void createProfilTable();
 
     @SqlUpdate("insert into profils (name, proprio, description) values (:name, :proprio, :description)")
@@ -31,6 +31,10 @@ public interface ProfilDao {
     @SqlQuery("select * from profils order by id")
     @RegisterMapperFactory(BeanMapperFactory.class)
     List<Profil> all();
+    
+    @SqlQuery("select * from profils where proprio = :proprio")
+    @RegisterMapperFactory(BeanMapperFactory.class)
+    List<Profil> findByProprio(@Bind("proprio") int proprio);
 
     @SqlQuery("select * from profils where id = :id")
     @RegisterMapperFactory(BeanMapperFactory.class)

@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import javax.swing.JOptionPane;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -35,7 +36,6 @@ public class ProfilResource {
         if (!tableExist("profils")) {
             logger.debug("Crate table profils");
             dao.createProfilTable();
-            dao.insert(new Profil(0, "Profil1", 0, "Profil de base"));
         }
     }
 
@@ -43,9 +43,11 @@ public class ProfilResource {
     public ProfilDto createProfil(ProfilDto dto) {
         Profil profil= new Profil();
         profil.initFromDto(dto);
-        User user = daoUser.findById(profil.getProprio());
+        
+        User user = daoUser.findById(""+profil.getProprio());
         Profil profil2= dao.findByName(profil.getName());
-        if (user != null && profil2 != null) {
+       
+        if (user != null && profil2 == null) {
         	 int id = dao.insert(profil);
              dto.setId(id);
              return dto;
@@ -54,14 +56,15 @@ public class ProfilResource {
     }
 
     @GET
-    @Path("/{name}")
-    public ProfilDto getProfil(@PathParam("name") String name) {
-    	Profil profil = dao.findByName(name);
-        if (profil == null) {
+    @Path("/{proprio}")
+    public List<ProfilDto> getProfilByProprio(@PathParam("proprio") int proprio) {
+    	List<Profil> profils = dao.findByProprio(proprio);
+        if (profils == null) {
             throw new WebApplicationException(404);
         }
-        return profil.convertToDto();
+        return profils.stream().map(Profil::convertToDto).collect(Collectors.toList());
     }
+    
 
     @GET
     public List<ProfilDto> getAllProfils(@QueryParam("q") String query) {
