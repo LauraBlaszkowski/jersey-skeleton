@@ -34,7 +34,6 @@ public class UserResource {
         if (!tableExist("users")) {
             logger.debug("Crate table users");
             dao.createUserTable();
-            dao.insert(new User(0, "Margaret Thatcher"));
         }
     }
 
@@ -45,9 +44,9 @@ public class UserResource {
         
         User user2 = dao.findByEmail(user.getEmail());
         
-        if(user.getName() == null){
+       /* if(user.getName() == null){
         	user.setName("");
-        }
+        }*/
         
         if(user2 == null){
         	 user.resetPasswordHash();
