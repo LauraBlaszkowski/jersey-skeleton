@@ -43,11 +43,11 @@ public class ProfilResource {
     public ProfilDto createProfil(ProfilDto dto) {
         Profil profil= new Profil();
         profil.initFromDto(dto);
-        
+
         User user = daoUser.findById(""+profil.getProprio());
         Profil profil2= dao.findByName(profil.getName());
        
-        if (user != null && profil2 == null) {
+        if (user != null && profil2 == null && profil.getName()!=null) {
         	 int id = dao.insert(profil);
              dto.setId(id);
              return dto;
@@ -59,6 +59,7 @@ public class ProfilResource {
     @Path("/{proprio}")
     public List<ProfilDto> getProfilByProprio(@PathParam("proprio") int proprio) {
     	List<Profil> profils = dao.findByProprio(proprio);
+    	JOptionPane.showMessageDialog(null, proprio);
         if (profils == null) {
             throw new WebApplicationException(404);
         }

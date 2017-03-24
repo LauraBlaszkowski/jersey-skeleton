@@ -23,7 +23,6 @@ import javax.ws.rs.core.MediaType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-
 import fr.iutinfo.skeleton.common.dto.UserDto;
 
 @Path("/user")
@@ -50,24 +49,12 @@ public class UserResource {
         //Vérification adresse mail
         Pattern p = Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,4}$");
 		Matcher m = p.matcher(user.getEmail().toUpperCase());
-		if(!m.matches()){
-			return null;
-		}
 		
-        /*
-        if(user.getPrenom() == null){
-        	user.setPrenom("");
-        }
-        if(user.getName() == null){
-        	user.setName("");
-        }
-        */
+        if(user.getName() == null)user.setName("");
         
-        
-        if(user2 == null){
+        if(user2 == null && m.matches() && dto.getPassword()!=null){
         	 user.resetPasswordHash();
-             int id = dao.insert(user);
-             dto.setId(id);
+             dto.setId(dao.insert(user));
              return dto;
         }
         return null;

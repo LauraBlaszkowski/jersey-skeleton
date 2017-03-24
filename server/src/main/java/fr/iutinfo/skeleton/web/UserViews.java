@@ -31,7 +31,7 @@ public class UserViews {
         if ("-1".equals(id)) {
             user = User.getAnonymousUser();
         } else {
-            user = dao.findById(Integer.parseInt(id));
+            user = dao.findById(id);
         }
         if (user == null) {
             throw new WebApplicationException(Response.Status.NOT_FOUND);
