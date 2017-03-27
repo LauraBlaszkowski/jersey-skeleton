@@ -1,5 +1,5 @@
 java:
-  image: baudoint/jersey-skeleton
+  image: LauraBlaszkowski/jersey-skeleton
   ports:
   - ip: 37.59.171.5 
     container_port: 8080
