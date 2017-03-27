@@ -1,6 +1,6 @@
 java:
-  image: tclavier/jersey-skeleton
+  image: LauraBlaszkowski/jersey-skeleton
   ports:
-  - ip: A.X.Y.Z
+  - ip: 37.59.171.5 
     container_port: 8080
     host_port: 80
