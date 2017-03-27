@@ -7,7 +7,6 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import javax.swing.JOptionPane;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -59,7 +58,6 @@ public class ProfilResource {
     @Path("/{proprio}")
     public List<ProfilDto> getProfilByProprio(@PathParam("proprio") int proprio) {
     	List<Profil> profils = dao.findByProprio(proprio);
-    	JOptionPane.showMessageDialog(null, proprio);
         if (profils == null) {
             throw new WebApplicationException(404);
         }
