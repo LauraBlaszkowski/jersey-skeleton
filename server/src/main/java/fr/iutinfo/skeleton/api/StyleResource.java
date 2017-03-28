@@ -15,12 +15,14 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
+import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.MediaType;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import fr.iutinfo.skeleton.common.dto.StyleDto;
+import fr.iutinfo.skeleton.common.dto.UserDto;
 
 @Path("/style")
 @Produces(MediaType.APPLICATION_JSON)
@@ -47,7 +49,7 @@ public class StyleResource {
              dto.setId(id);
              return dto;
         }
-        return null;
+        return style2.convertToDto();
     }
 
     @GET
@@ -60,6 +62,14 @@ public class StyleResource {
             styles = dao.search("%" + query + "%");
         }
         return styles.stream().map(Style::convertToDto).collect(Collectors.toList());
+    }
+    
+    @GET
+    @Path("/{id}")
+    public StyleDto getUser(@PathParam("id") String id) {
+        Style style = dao.findById(""+id);
+        if (style == null) throw new WebApplicationException(404);
+        return style.convertToDto();
     }
 
     @DELETE

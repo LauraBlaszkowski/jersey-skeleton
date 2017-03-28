@@ -7,7 +7,7 @@ import java.security.Principal;
 
 public class StyleDto implements Principal {
     final static Logger logger = LoggerFactory.getLogger(StyleDto.class);
-    private int id = 0;
+    
     private String couleur;
     private String police;
     private String taille;
@@ -68,14 +68,6 @@ public class StyleDto implements Principal {
 	public String getName() {
 		// TODO Auto-generated method stub
 		return null;
-	}
-
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
 	}
 
 }

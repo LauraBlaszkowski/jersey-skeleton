@@ -34,7 +34,7 @@ public interface StyleDao {
 
     @SqlQuery("select * from styles where id = :id")
     @RegisterMapperFactory(BeanMapperFactory.class)
-    Style findById(@Bind("id") int id);
+    Style findById(@Bind("id") String string);
 
     void close();
 }
