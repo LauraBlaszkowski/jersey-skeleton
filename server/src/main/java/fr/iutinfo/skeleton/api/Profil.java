@@ -21,7 +21,7 @@ public class Profil implements Principal {
     	this.name=name;
     	this.proprio=proprio;
     	this.description=description;
-    	this.style=id;
+    	this.style=style;
 	}
 
 
@@ -100,6 +100,7 @@ public class Profil implements Principal {
         this.setName(dto.getName());
         this.setProprio(dto.getProprio());
         this.setDescription(dto.getDescription());
+        this.setStyle(dto.getStyle());
     }
 
     public ProfilDto convertToDto() {
@@ -108,6 +109,7 @@ public class Profil implements Principal {
         dto.setName(this.getName());
         dto.setProprio(this.getProprio());
         dto.setDescription(this.getDescription());
+        dto.setStyle(this.getStyle());
         return dto;
     }
 

@@ -15,6 +15,14 @@ public class StyleDto implements Principal {
     private String espacement_ligne;
     private String espacement_mot;
 
+    
+    public int getId() {
+        return id;
+    }
+
+	public void setId(int id) {
+		this.id = id;
+	}
 
     public String getCouleur() {
 		return police;
@@ -69,12 +77,6 @@ public class StyleDto implements Principal {
 		return null;
 	}
 
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
+	
 
 }

@@ -11,7 +11,7 @@ public class ProfilDto implements Principal {
     private int id = 0;
     private int proprio;
     private String description;
-    private int numStyle;
+    private int style;
 
 
    
@@ -47,11 +47,13 @@ public class ProfilDto implements Principal {
 		this.description = description;
 	}
 
-	public int getNumStyle() {
-		return numStyle;
+	
+
+	public int getStyle() {
+		return style;
 	}
 
-	public void setNumStyle(int numStyle) {
-		this.numStyle = numStyle;
+	public void setStyle(int style) {
+		this.style = style;
 	}
 }

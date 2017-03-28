@@ -42,7 +42,7 @@ public class StyleResource {
         Style style= new Style();
         style.initFromDto(dto);
         Style style2=dao.find(style);
- 
+        
         if (style2 == null) {
         	 int id = dao.insert(style);
              dto.setId(id);

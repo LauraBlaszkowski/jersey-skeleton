@@ -7,7 +7,7 @@ import org.skife.jdbi.v2.tweak.BeanMapperFactory;
 import java.util.List;
 
 public interface ProfilDao {
-    @SqlUpdate("create table profils (id integer primary key autoincrement, name varchar(100), proprio Integer, description varchar(150), style Integer, constraint fk_id foreign key('proprio') references users('id') ON DELETE CASCADE)")
+    @SqlUpdate("create table profils (id integer primary key autoincrement, name varchar(100), proprio Integer, description varchar(150), style Integer)")
     void createProfilTable();
 
     @SqlUpdate("insert into profils (name, proprio, description, style) values (:name, :proprio, :description, :style)")
